@@ -5,7 +5,7 @@ plugins {
 	id 'java'
 }
 
-group = 'com.estudo.nsa'
+group = 'com.luiznux.lerning-microservice'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
