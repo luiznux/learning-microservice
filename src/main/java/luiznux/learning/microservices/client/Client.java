@@ -26,7 +26,7 @@ public class Client {
     private String email;
 
     @Column
-    @OneToMany
-    private List<Order> orders;
+    @ElementCollection
+    private List<Long> orders;
 }
 
