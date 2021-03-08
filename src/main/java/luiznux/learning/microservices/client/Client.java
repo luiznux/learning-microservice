@@ -1,21 +1,24 @@
 package luiznux.learning.microservices.client;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import luiznux.learning.microservices.order.Order;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
-@Data
+@Table(name = "client", uniqueConstraints = {
+        @UniqueConstraint(name = "uk_email",columnNames = {"email"})})
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Client {
 
     @Id
     private Long id;
+
     @Column
     private String username;
 
@@ -24,9 +27,5 @@ public class Client {
 
     @Column
     private String email;
-
-    @Column
-    @ElementCollection
-    private List<Long> orders;
 }
 

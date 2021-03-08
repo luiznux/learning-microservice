@@ -1,31 +1,34 @@
 package luiznux.learning.microservices.order;
 
-import lombok.EqualsAndHashCode;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@AllArgsConstructor
+@NoArgsConstructor
 public class Order {
 
     @Id
     private Long id;
 
     @Column
-    private Integer idClient;
+    private LocalDateTime createdAt;
 
     @Column
-    private Integer amount;
+    private OrderStatus orderStatus;
 
     @Column
-    @ElementCollection
-    private List<Long> shopListId;
+    private Long clientId;
+
+    @Column
+    @OneToMany
+    private List<OrderItem> orderItem;
 }
