@@ -16,6 +16,12 @@ public class ClientController {
         this.clientService = clientService;
     }
 
+    @PostMapping
+    public ResponseEntity<HttpStatus> createClient(@RequestBody Client client){
+        clientService.createClient(client);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Client> getClient(@PathVariable Long id){
 
@@ -27,11 +33,5 @@ public class ClientController {
             log.error("client not found",e);
             return ResponseEntity.notFound().build();
         }
-    }
-
-    @PostMapping
-    public ResponseEntity<HttpStatus> createClient(@RequestBody Client client){
-       clientService.createClient(client);
-       return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
